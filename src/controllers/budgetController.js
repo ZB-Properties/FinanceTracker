@@ -1,6 +1,6 @@
 const pool = require('../config/db');
 
-// Add new budget
+
 const addBudget = async (req, res) => {
   const { category, amount } = req.body;
   const userId = req.userId;
@@ -18,7 +18,7 @@ const addBudget = async (req, res) => {
   }
 };
 
-// Get all budgets
+
 const getBudgets = async (req, res) => {
   const userId = req.userId;
   try {
