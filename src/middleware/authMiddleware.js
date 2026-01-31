@@ -1,15 +1,29 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
-  const token = req.headers.authorization?.split(' ')[1];
-
-  if (!token) return res.status(401).json({ message: 'No token' });
-
   try {
+    // Check for Authorization header
+    const authHeader = req.headers.authorization;
+    if (!authHeader) {
+      return res.status(401).json({ message: 'No token provided' });
+    }
+
+    // Extract token
+    const token = authHeader.split(' ')[1]; // Bearer <token>
+    if (!token) {
+      return res.status(401).json({ message: 'Token missing' });
+    }
+
+    // Verify token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
+
+    // Attach userId to request for controllers
+    req.userId = decoded.id; // 👈 use this in update/delete transaction
+
     next();
-  } catch {
+  } catch (err) {
+    console.error('Auth middleware error:', err.message);
     res.status(401).json({ message: 'Invalid token' });
   }
 };
+
