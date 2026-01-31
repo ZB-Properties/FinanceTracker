@@ -32,7 +32,8 @@ const getBudgets = async (req, res) => {
   }
 };
 
-// Update a budget
+
+
 const updateBudget = async (req, res) => {
   const { category, amount } = req.body;
   const userId = req.userId;
@@ -57,7 +58,7 @@ const updateBudget = async (req, res) => {
   }
 };
 
-// Delete a budget
+
 const deleteBudget = async (req, res) => {
   const userId = req.userId;
   const budgetId = req.params.id;

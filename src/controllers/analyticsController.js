@@ -1,6 +1,6 @@
 const pool = require('../config/db');
 
-// Summary: total income, total expense, savings
+
 const getSummaryAnalytics = async (req, res) => {
   const userId = req.userId;
   try {
@@ -22,7 +22,8 @@ const getSummaryAnalytics = async (req, res) => {
   }
 };
 
-// Monthly trend
+
+
 const getMonthlyAnalytics = async (req, res) => {
   const userId = req.userId;
 
