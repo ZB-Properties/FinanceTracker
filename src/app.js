@@ -10,7 +10,7 @@ const analyticsRoutes = require('./routes/analyticsRoutes');
 const app = express();
 
 const allowedOrigins = ['https://finance-tracker-wheat-zeta.vercel.app',
-    'http://localhost:5173'
+    
 ];
 
 app.use(cors({
