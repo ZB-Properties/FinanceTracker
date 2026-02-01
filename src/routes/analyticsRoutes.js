@@ -8,7 +8,7 @@ const {
 
 
 
-router.get('/summary', authMiddleware, getSummaryAnalytics);
+router.get('/', authMiddleware, getSummaryAnalytics);
 router.get('/monthly', authMiddleware, getMonthlyAnalytics);
 
 module.exports = router;

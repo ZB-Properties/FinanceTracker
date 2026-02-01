@@ -11,7 +11,7 @@ const Transaction = () => {
 
   const fetchTransactions = async () => {
     try {
-      const res = await axiosInstance.get('/api/transactions');
+      const res = await axiosInstance.get('/api/expenses');
       setTransactions(res.data);
     } catch (err) {
       console.error('Failed to fetch transactions:', err);
@@ -56,9 +56,9 @@ const Transaction = () => {
 
     try {
       if (modal.transaction) {
-        await axiosInstance.put(`/api/transactions/${modal.transaction.id}`, data);
+        await axiosInstance.put(`/api/expenses/${modal.transaction.id}`, data);
       } else {
-        await axiosInstance.post('/api/transactions', data);
+        await axiosInstance.post('/api/expenses', data);
       }
 
       fetchTransactions();
@@ -71,7 +71,7 @@ const Transaction = () => {
 
   const handleDelete = async () => {
     try {
-      await axiosInstance.delete(`/api/transactions/${modal.transaction.id}`);
+      await axiosInstance.delete(`/api/expenses/${modal.transaction.id}`);
       fetchTransactions();
       closeModal();
     } catch (err) {
