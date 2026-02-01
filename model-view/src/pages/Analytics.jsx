@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Chart from 'chart.js/auto';
 import { useNavigate } from 'react-router-dom';
-import axios from '../utils/axiosInstance';
 import './trans-budget.css'
+import axiosInstance from '../utils/axiosInstance';
 
 
 const Analytics = () => {
@@ -19,7 +19,7 @@ const Analytics = () => {
       try {
         const token = localStorage.getItem('token');
 
-        const res = await axios.get('/api/analytics', {
+        const res = await axiosInstance.get('/api/analytics', {
           headers: {
             Authorization: `Bearer ${token}`
           }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import axios from '../utils/axiosInstance';
 import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../utils/axiosInstance';
+
 
 const Transaction = () => {
   const navigate = useNavigate();
@@ -10,7 +11,7 @@ const Transaction = () => {
 
   const fetchTransactions = async () => {
     try {
-      const res = await axios.get('/api/transactions');
+      const res = await axiosInstance.get('/api/transactions');
       setTransactions(res.data);
     } catch (err) {
       console.error('Failed to fetch transactions:', err);
@@ -55,9 +56,9 @@ const Transaction = () => {
 
     try {
       if (modal.transaction) {
-        await axios.put(`/api/transactions/${modal.transaction.id}`, data);
+        await axiosInstance.put(`/api/transactions/${modal.transaction.id}`, data);
       } else {
-        await axios.post('/api/transactions', data);
+        await axiosInstance.post('/api/transactions', data);
       }
 
       fetchTransactions();
@@ -70,7 +71,7 @@ const Transaction = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/api/transactions/${modal.transaction.id}`);
+      await axiosInstance.delete(`/api/transactions/${modal.transaction.id}`);
       fetchTransactions();
       closeModal();
     } catch (err) {

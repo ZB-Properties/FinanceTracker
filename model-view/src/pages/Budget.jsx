@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from '../utils/axiosInstance';
 import './trans-budget.css';
+import axiosInstance from '../utils/axiosInstance';
 
 const Budget = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Budget = () => {
   useEffect(() => {
     const fetchBudgets = async () => {
       try {
-        const res = await axios.get('/api/budgets');
+        const res = await axiosInstance.get('/api/budgets');
         setBudgets(res.data);
       } catch (err) {
         console.error('Failed to fetch budgets:', err);
@@ -34,7 +34,7 @@ const Budget = () => {
   const handleAddBudget = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/api/budgets', newBudget);
+      const res = await axiosInstance.post('/api/budgets', newBudget);
       setBudgets([...budgets, res.data]);
       setNewBudget({ category: '', amount: '', period: 'Monthly' });
     } catch (err) {
@@ -55,7 +55,7 @@ const Budget = () => {
 
   const handleUpdate = async () => {
     try {
-      const res = await axios.put(
+      const res = await axiosInstance.put(
         `/api/budgets/${editingBudget.id}`,
         editData
       );
@@ -72,7 +72,7 @@ const Budget = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`/api/budgets/${id}`);
+      await axiosInstance.delete(`/api/budgets/${id}`);
       setBudgets(budgets.filter((b) => b.id !== id));
     } catch (err) {
       console.error('Delete failed', err);

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom'; 
-import axios from '../utils/axiosInstance';
 import { toast } from 'react-toastify';
 import './users.css'
+import axiosInstance from '../utils/axiosInstance';
 
 
 
@@ -17,7 +17,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/api/auth/register', form);
+      const res = await axiosInstance.post('/api/auth/register', form);
       localStorage.setItem('token', res.data.token); 
       navigate('/dashboard'); 
     toast.success('Account created successfully!');

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from '../utils/axiosInstance';
 import { toast } from 'react-toastify';
 import './users.css';
+import axiosInstance from '../utils/axiosInstance';
 
 const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -15,7 +15,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('/api/auth/login', form);
+      const res = await axiosInstance.post('/api/auth/login', form);
 
       localStorage.setItem('token', res.data.token);
       toast.success('Login successful!');
