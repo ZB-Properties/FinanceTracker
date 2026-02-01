@@ -27,4 +27,9 @@ app.use('/api/budgets', budgetRoutes);
 app.use('/api/analytics', analyticsRoutes);
 
 
+app.get('/', (req, res) => {
+  res.send('Finance Tracker API is running!');
+});
+
+
 module.exports = app;
