@@ -10,7 +10,7 @@ const Transaction = () => {
 
   const fetchTransactions = async () => {
     try {
-      const res = await axios.get('/transactions');
+      const res = await axios.get('/api/transactions');
       setTransactions(res.data);
     } catch (err) {
       console.error('Failed to fetch transactions:', err);
@@ -55,9 +55,9 @@ const Transaction = () => {
 
     try {
       if (modal.transaction) {
-        await axios.put(`/transactions/${modal.transaction.id}`, data);
+        await axios.put(`/api/transactions/${modal.transaction.id}`, data);
       } else {
-        await axios.post('/transactions', data);
+        await axios.post('/api/transactions', data);
       }
 
       fetchTransactions();
@@ -70,7 +70,7 @@ const Transaction = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`/transactions/${modal.transaction.id}`);
+      await axios.delete(`/api/transactions/${modal.transaction.id}`);
       fetchTransactions();
       closeModal();
     } catch (err) {
