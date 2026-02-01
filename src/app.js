@@ -14,22 +14,16 @@ const allowedOrigins = [
   'https://finance-tracker-wheat-zeta.vercel.app'
 ];
 
-const corsOptions = {
-  origin: function(origin, callback) {
+
+app.use(cors({
+  origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
-  },
-  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
-};
-
-app.use(cors(corsOptions));
-app.options('', cors(corsOptions)); 
-
+  }
+}));
 
 
 app.use(express.json());
