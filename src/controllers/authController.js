@@ -3,15 +3,15 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const registerUser = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { name, email, password } = req.body;
   try {
     const userExists = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
     if (userExists.rows.length > 0) return res.status(400).json({ message: 'Email already exists' });
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = await pool.query(
-      'INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING id, username, email',
-      [username, email, hashedPassword]
+      'INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING id, name, email',
+      [name, email, hashedPassword]
     );
 
     const token = jwt.sign({ id: newUser.rows[0].id }, process.env.JWT_SECRET, { expiresIn: '1d' });
