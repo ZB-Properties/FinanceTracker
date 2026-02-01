@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import './users.css'
 
 
+
 const Register = () => {
   const [form, setForm] = useState({ name: '', email: '', password: '' });
   const navigate = useNavigate();

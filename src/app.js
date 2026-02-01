@@ -9,26 +9,28 @@ const analyticsRoutes = require('./routes/analyticsRoutes');
 
 const app = express();
 
-const allowedOrigins = ['https://finance-tracker-wheat-zeta.vercel.app',
-    
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://finance-tracker-wheat-zeta.vercel.app'
 ];
 
-app.use(cors({
-  origin: function (origin, callback) {
+const corsOptions = {
+  origin: function(origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('Not allowed by CORS'));
     }
-  }
-}));
+  },
+  methods: ['GET','POST','PUT','DELETE','OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
+};
 
-app.use((req, res, next) => {
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(204);
-  }
-  next();
-});
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions)); 
+
+
 
 app.use(express.json());
 
