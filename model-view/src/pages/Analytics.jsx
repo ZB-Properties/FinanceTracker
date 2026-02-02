@@ -25,13 +25,13 @@ const Analytics = () => {
           }
         });
 
-        const { income, expenses } = res.data;
+        const { total_income, total_expense, net_savings } = res.data;
 
-        setCards([
-          { id: 1, title: 'Total Income', value: `$${income}` },
-          { id: 2, title: 'Total Expenses', value: `$${expenses}` },
-          { id: 3, title: 'Savings', value: `$${income - expenses}` }
-        ]);
+       setCards([
+          { id: 1, title: 'Total Income', value: `$${total_income ?? 0}` },
+          { id: 2, title: 'Total Expenses', value: `$${total_expense ?? 0}` },
+          { id: 3, title: 'Savings', value: `$${net_savings ?? 0}` }
+     ]);
 
         if (chartInstance.current) {
           chartInstance.current.destroy();
@@ -45,7 +45,7 @@ const Analytics = () => {
             datasets: [
               {
                 label: 'Monthly Overview',
-                data: [income, expenses],
+                data: [total_income ?? 0, total_expense ?? 0],
                 backgroundColor: ['#28a745', '#dc3545']
               }
             ]

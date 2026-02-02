@@ -13,7 +13,10 @@ const getSummaryAnalytics = async (req, res) => {
       [userId]
     );
 
-    const { total_income, total_expense } = result.rows[0];
+    
+    const total_income = Number(result.rows[0].total_income || 0);
+    const total_expense = Number(result.rows[0].total_expense || 0);
+
     const net_savings = (total_income || 0) - (total_expense || 0);
 
     res.json({ total_income, total_expense, net_savings });

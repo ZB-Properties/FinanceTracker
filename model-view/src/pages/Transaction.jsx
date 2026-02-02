@@ -130,6 +130,9 @@ const Transaction = () => {
                 <select name="type" value={form.type} onChange={handleChange}>
                   <option value="income">Income</option>
                   <option value="expense">Expense</option>
+                  <option value="expense">Investment</option>
+                  <option value="expense">Bills</option>
+                  <option value="expense">Gifts</option>
                 </select>
               </>
             ) : (
