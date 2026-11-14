@@ -13,6 +13,7 @@ const corsOptions = {
   origin: [
     'https://expense-tracker-fbro-ibozm9ryr-zoey-alli-bs-projects.vercel.app',
     'https://finance-tracker-wheat-zeta.vercel.app',
+    'https://finance-tracker-nu-virid.vercel.app/',
     'http://localhost:5173'
   ],
   credentials: true,
