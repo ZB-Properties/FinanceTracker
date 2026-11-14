@@ -12,6 +12,7 @@ const app = express();
 const corsOptions = {
   origin: [
     'https://finance-tracker-hj9o3aq9a-zoey-alli-bs-projects.vercel.app',
+    'https://finance-tracker-8ik2m18jv-zoey-alli-bs-projects.vercel.app',
     'http://localhost:5173'
   ],
   credentials: true,

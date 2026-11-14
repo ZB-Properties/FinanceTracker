@@ -25,7 +25,7 @@ const Register = () => {
     } catch (err) {
       console.error(err);
     }
-  };
+  }; 
 
   return (
     <div className="user-container">
